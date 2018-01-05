@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+//Files
+import Login from './login.jsx';
+
 class App extends React.Component {
 	render(){
 		return (
-			<div>Hello World></div>
+			<Login />
 		)
 			
 	}
