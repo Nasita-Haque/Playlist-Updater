@@ -1,15 +1,14 @@
-const path = require("path");
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
-  context: __dirname,
   entry: "./frontend/app.jsx",
   output: {
-    filename: "bundle.js",
-    path: path.join(__dirname, '/public')
+    path: path.join(__dirname,'/frontend/public'),
+    filename: "bundle.js"
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: [/\.jsx?$/, /\.js?$/],
         exclude: /(node_modules|bower_components)/,
