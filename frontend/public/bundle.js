@@ -954,6 +954,10 @@ var _PlaylistSearcher = __webpack_require__(27);
 
 var _PlaylistSearcher2 = _interopRequireDefault(_PlaylistSearcher);
 
+var _config = __webpack_require__(28);
+
+var _config2 = _interopRequireDefault(_config);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -977,18 +981,16 @@ var App = function (_React$Component) {
   _createClass(App, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      function start() {
+      var start = function start() {
         // 2. Initialize the JavaScript client library.
         gapi.client.init({
-          apiKey: 'YAIzaSyDIC70QkPGuavMugs4xgHYhuUO1mRys0cc',
+          apiKey: _config2.default,
           discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"]
-          // clientId: '140223804679-9inepuht23m5hv2vftonvck3vspo1utu.apps.googleusercontent.com',
-          // scope: 'https://www.googleapis.com/auth/youtube.readonly'
         }).then(function () {
           console.log('working');
         });
-        // 1. Load the JavaScript client library.
-      }
+      };
+      // 1. Load the JavaScript client library.
       gapi.load('client', start);
     }
   }, {
@@ -18350,7 +18352,7 @@ var PlaylistSearcher = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (PlaylistSearcher.__proto__ || Object.getPrototypeOf(PlaylistSearcher)).call(this, props));
 
-    _this.state = { playlistUrl: '' };
+    _this.state = { playlistURL: '' };
 
     _this.handleChange = _this.handleChange.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -18358,49 +18360,29 @@ var PlaylistSearcher = function (_React$Component) {
   }
 
   _createClass(PlaylistSearcher, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      // window.onload = () => {
-      //   function start() {
-      //     // 2. Initialize the JavaScript client library.
-      //     gapi.client.init({
-      //       apiKey: 'YAIzaSyDIC70QkPGuavMugs4xgHYhuUO1mRys0cc',
-      //       discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"],
-      //       // clientId: '140223804679-9inepuht23m5hv2vftonvck3vspo1utu.apps.googleusercontent.com',
-      //       // scope: 'https://www.googleapis.com/auth/youtube.readonly'
-      //     })
-      //     .then(function() {
-      //       // 3. Initialize and make the API request.
-      //       return gapi.client.playlistItemsList.list({
-      //         'path': 'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest',
-      //         'maxResults': "25",
-      //         "part": "snippet, contentDetails",
-      //         "playlistID": "PLg9ZoCDcE834UolK4eJBxZtGwJRSt6cHy", 
-      //       })
-      //     })
-      //     .then(function(response) {
-      //       console.log(response.result);
-      //       return response.result
-      //     })
-      //     .then(function(reason) {
-      //       console.log('Error: ' + reason.result.error.message);
-      //     });
-      //   };
-      //   // 1. Load the JavaScript client library.
-      //   gapi.load('client', start);
-      // }
-    }
-  }, {
     key: 'handleChange',
     value: function handleChange(e) {
       console.log('value:', e.target.value);
-      this.setState({ playlistUrl: e.target.value });
+      this.setState({ playlistURL: e.target.value });
     }
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
       e.preventDefault();
       console.log('this was submitted');
+      console.log("STATE", this.state.playlistURL);
+
+      var playlistID = this.state.playlistURL;
+
+      function requestPlaylistItems(playlistID) {
+        console.log('working');
+        return gapi.client.request({
+          "path": "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=" + playlistID
+        }).then(function (response) {
+          console.log("ITEMS:", response.result.items);
+        });
+      }
+      requestPlaylistItems(playlistID);
     }
   }, {
     key: 'render',
@@ -18418,7 +18400,7 @@ var PlaylistSearcher = function (_React$Component) {
           null,
           'PLg9ZoCDcE834UolK4eJBxZtGwJRSt6cHy'
         ),
-        _react2.default.createElement('input', { className: 'playlistUrl', onChange: this.handleChange }),
+        _react2.default.createElement('input', { className: 'playlistURL', onChange: this.handleChange }),
         _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
       );
     }
@@ -18428,6 +18410,23 @@ var PlaylistSearcher = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = PlaylistSearcher;
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var config = {
+  API_KEY: 'AIzaSyDih-F6fBqIqEZmk4BRF0pQ8OLDgTjakiY'
+};
+
+var myKey = config.API_KEY;
+exports.default = myKey;
 
 /***/ })
 /******/ ]);
