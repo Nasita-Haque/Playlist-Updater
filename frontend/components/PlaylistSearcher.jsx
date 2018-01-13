@@ -1,9 +1,5 @@
 import React from 'react';
 
-// <script src="https://apis.google.com/js/api.js"></script> 
-
-// import retrievePlaylistItems from '../utilities/youtubeAPI.js';
-
 class PlaylistSearcher extends React.Component{
 	constructor(props){
 		super(props);
