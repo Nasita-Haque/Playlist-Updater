@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class PlaylistSearcher extends React.Component{
 	constructor(props){
@@ -21,17 +22,31 @@ class PlaylistSearcher extends React.Component{
 
     let playlistID = this.state.playlistURL
 
-    function requestPlaylistItems(playlistID) {
-      console.log('working')
-     return gapi.client.request({
-        "path": "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=" + playlistID
-      })
-     .then((response) => {
-      console.log("ITEMS:", response.result.items)
-     })
-    }
-    requestPlaylistItems(playlistID)
+
+    axios.get('/api/', {
+      params: {
+        playlistId: playlistID
+      }
+    })
+    .then(function (response) {
+      console.log('RESPONSE:', response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
+
+  //   function requestPlaylistItems(playlistID) {
+  //     console.log('working')
+  //    return gapi.client.request({
+  //       "path": "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=" + playlistID
+  //     })
+  //    .then((response) => {
+  //     console.log("ITEMS:", response.result.items)
+  //    })
+  //   }
+  //   requestPlaylistItems(playlistID)
+  // }
 
 	render(){
 		return (
