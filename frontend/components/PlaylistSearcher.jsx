@@ -22,31 +22,17 @@ class PlaylistSearcher extends React.Component{
 
     let playlistID = this.state.playlistURL
 
-
-    axios.get('/api/', {
-      params: {
-        playlistId: playlistID
-      }
-    })
-    .then(function (response) {
-      console.log('RESPONSE:', response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    function requestPlaylistItems(playlistID) {
+      console.log('working')
+     return gapi.client.request({
+        "path": "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=" + playlistID
+      })
+     .then((response) => {
+      console.log("ITEMS:", response.result.items)
+     })
+    }
+    requestPlaylistItems(playlistID)
   }
-
-  //   function requestPlaylistItems(playlistID) {
-  //     console.log('working')
-  //    return gapi.client.request({
-  //       "path": "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=" + playlistID
-  //     })
-  //    .then((response) => {
-  //     console.log("ITEMS:", response.result.items)
-  //    })
-  //   }
-  //   requestPlaylistItems(playlistID)
-  // }
 
 	render(){
 		return (

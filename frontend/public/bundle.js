@@ -1658,22 +1658,22 @@ var App = function (_React$Component) {
   }
 
   _createClass(App, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var start = function start() {
+        // 2. Initialize the JavaScript client library.
+        gapi.client.init({
+          apiKey: _config2.default,
+          discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"]
+        }).then(function () {
+          console.log('working');
+        });
+      };
+      // 1. Load the JavaScript client library.
+      gapi.load('client', start);
+    }
+  }, {
     key: 'render',
-
-
-    // componentDidMount(){
-    //   const start = () => {
-    //     // 2. Initialize the JavaScript client library.
-    //     gapi.client.init({
-    //       apiKey: myKey,
-    //       discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"],
-    //     }).then(() => {
-    //       console.log('working')
-    //     })
-    // }
-    //   // 1. Load the JavaScript client library.
-    //   gapi.load('client', start);
-    // }
     value: function render() {
       return _react2.default.createElement(_PlaylistSearcher2.default, null);
     }
@@ -19053,29 +19053,16 @@ var PlaylistSearcher = function (_React$Component) {
 
       var playlistID = this.state.playlistURL;
 
-      _axios2.default.get('/api/', {
-        params: {
-          playlistId: playlistID
-        }
-      }).then(function (response) {
-        console.log('RESPONSE:', response);
-      }).catch(function (error) {
-        console.log(error);
-      });
+      function requestPlaylistItems(playlistID) {
+        console.log('working');
+        return gapi.client.request({
+          "path": "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=" + playlistID
+        }).then(function (response) {
+          console.log("ITEMS:", response.result.items);
+        });
+      }
+      requestPlaylistItems(playlistID);
     }
-
-    //   function requestPlaylistItems(playlistID) {
-    //     console.log('working')
-    //    return gapi.client.request({
-    //       "path": "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=" + playlistID
-    //     })
-    //    .then((response) => {
-    //     console.log("ITEMS:", response.result.items)
-    //    })
-    //   }
-    //   requestPlaylistItems(playlistID)
-    // }
-
   }, {
     key: 'render',
     value: function render() {
