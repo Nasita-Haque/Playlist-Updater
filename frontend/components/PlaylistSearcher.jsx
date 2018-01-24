@@ -15,7 +15,7 @@ class PlaylistSearcher extends React.Component{
     this.setState({playlistURL: e.target.value})
 	}
 
-  handleSubmit(e){
+  handleURLSubmit(e){
     e.preventDefault()
     console.log('this was submitted')
     console.log("STATE", this.state.playlistURL)
@@ -36,7 +36,7 @@ class PlaylistSearcher extends React.Component{
 
 	render(){
 		return (
-  			<form onSubmit={this.handleSubmit}>
+  			<form onSubmit={this.handleURLSubmit}>
           <h1>Type in a playlist URL below.</h1>
   				<h1>PLg9ZoCDcE834UolK4eJBxZtGwJRSt6cHy</h1>
           <input className="playlistURL" onChange={this.handleChange}/>
