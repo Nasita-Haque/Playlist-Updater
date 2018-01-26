@@ -17,8 +17,7 @@ class PlaylistSearcher extends React.Component{
 
   handleURLSubmit(e){
     e.preventDefault()
-    console.log('this was submitted')
-    console.log("STATE", this.state.playlistURL)
+    console.log("STATE", this.state.playlistURL);
 
     let playlistID = this.state.playlistURL
 
