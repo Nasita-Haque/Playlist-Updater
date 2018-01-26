@@ -6,11 +6,11 @@ class PlaylistSearcher extends React.Component{
 		super(props);
 		this.state = {playlistURL: ''}
 
-    this.handleChange = this.handleChange.bind(this)
-		this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleURLChange = this.handleURLChange.bind(this)
+		this.handleURLSubmit = this.handleURLSubmit.bind(this)
 	}
 
-  handleChange(e) {
+  handleURLChange(e) {
     console.log('value:',e.target.value)
     this.setState({playlistURL: e.target.value})
 	}
@@ -39,7 +39,7 @@ class PlaylistSearcher extends React.Component{
   			<form onSubmit={this.handleURLSubmit}>
           <h1>Type in a playlist URL below.</h1>
   				<h1>PLg9ZoCDcE834UolK4eJBxZtGwJRSt6cHy</h1>
-          <input className="playlistURL" onChange={this.handleChange}/>
+          <input className="playlistURL" onChange={this.handleURLChange}/>
   				<input type="submit" value="Submit" />
   			</form>
 		)
