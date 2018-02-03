@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
+//Server
 app.listen(port, () => console.log('Server running on localhost 5000'));
 
 //Export App
