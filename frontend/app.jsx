@@ -14,7 +14,7 @@ class App extends React.Component {
           apiKey: myKey,
           discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"],
         }).then(() => {
-          console.log('working!')
+          console.log('working')
         })
     }
       // 1. Load the JavaScript client library
