@@ -19,7 +19,7 @@ class PlaylistSearcher extends React.Component{
     e.preventDefault()
     console.log("STATE", this.state.playlistURL);
 
-    let playlistID = this.state.playlistURL
+    let playlistID = this.state.playlistURL;
 
     function requestPlaylistItems(playlistID) {
       console.log('working')
