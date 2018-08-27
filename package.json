@@ -1,7 +1,7 @@
 {
   "name": "playlistUpdater",
   "version": "1.0.0",
-  "description": "",
+  "description": "Youtube Playlist Saver",
   "main": "index.js",
   "scripts": {
     "start": "webpack --watch & nodemon ./backend/server.js"
